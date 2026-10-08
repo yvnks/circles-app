@@ -1,8 +1,8 @@
-class CustomErrorHandler extends Error {
+class CustomErrorHandlerAPI extends Error {
   constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
   }
 }
 
-export default CustomErrorHandler;
+export default CustomErrorHandlerAPI;
