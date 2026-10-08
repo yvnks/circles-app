@@ -3,7 +3,15 @@ import extend from "lodash";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import CustomErrorHandlerAPI from "../helpers/customErrorHandlerApi.js";
 
-export const getAllUsers = (req, res, next) => {};
+export const getAllUsers = asyncHandler(async (req, res, next) => {
+  const users = await User.find({});
+
+  res.status(200).json({
+    success: true,
+    data: users,
+    count: users.length,
+  });
+});
 
 export const createUser = asyncHandler(async (req, res, next) => {
   const existingUser = await User.findOne({ email: req.body.email });
