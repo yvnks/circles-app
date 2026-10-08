@@ -41,5 +41,4 @@ UserSchema.methods.authenticate = async function (plainText) {
   return await bcrypt.compare(plainText, this.password);
 };
 
-
 export default mongoose.model("UserSchema", UserSchema);

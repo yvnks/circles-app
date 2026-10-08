@@ -42,6 +42,28 @@ export const getUser = asyncHandler(async (req, res) => {
   });
 });
 
-export const updateUser = (req, res) => {};
+export const updateUser = asyncHandler(async (req, res) => {
+  let user = req.profile;
+  // update user.
+  user = await User.findByIdAndUpdate(user.id, req.body, {
+    returnDocument: "after",
+    runValidators: true,
+  });
 
-export const removeUser = (req, res) => {};
+  user.updated = Date.now();
+  user = extend(user, req.body);
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
+
+export const removeUser = asyncHandler(async (req, res) => {
+  await User.findByIdAndDelete(req.profile.id);
+
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});
