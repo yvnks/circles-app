@@ -33,10 +33,15 @@ export const createUser = asyncHandler(async (req, res, next) => {
   });
 });
 
-export const getUser = (req, res) => {};
+export const getUser = asyncHandler(async (req, res) => {
+  req.profile.password = undefined;
+
+  res.status(200).json({
+    success: true,
+    data: req.profile,
+  });
+});
 
 export const updateUser = (req, res) => {};
 
 export const removeUser = (req, res) => {};
-
-export const getUserById = (req, res) => {};

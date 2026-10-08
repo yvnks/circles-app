@@ -5,18 +5,16 @@ import {
   getUser,
   updateUser,
   removeUser,
-  // getUserById,
 } from "../controllers/user.controller.js";
+import userById from "../middleware/userById.js";
 
 const router = express.Router();
 
 router.route("/").get(getAllUsers).post(createUser);
-router
-  .route("/:userId")
-  .get(getUser)
-  .patch(updateUser)
-  .delete(removeUser);
+router.route("/:userId").get(getUser).patch(updateUser).delete(removeUser);
 
-// router.param("userId", getUserById);
+router.param("userId", userById);
 
 export default router;
+
+// GET http://localhost:3000/api/v1/users/:123
