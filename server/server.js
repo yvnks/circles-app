@@ -7,6 +7,7 @@ import hpp from "hpp";
 import connectDatabase from "./helpers/dbConnect.js";
 import "dotenv/config";
 import userRoutes from "./routes/user.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 import errHandler from "./middleware/customErrHandler.js";
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // mount routes
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 app.use(errHandler);
 
